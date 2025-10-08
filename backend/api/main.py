@@ -18,6 +18,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Import our modules
 from backend.utils.jwt_utils import JWTManager, verify_access_token
 from backend.core.secure_config import SECURITY_CONFIG
+from api.kerala_features import router as kerala_router
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -38,6 +39,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include Kerala features router
+app.include_router(kerala_router)
 
 # Security
 security = HTTPBearer()
