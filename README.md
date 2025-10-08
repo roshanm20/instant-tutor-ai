@@ -65,18 +65,20 @@ pip install -r requirements.txt
 
 ### 4. Start Vector Database (Weaviate)
 ```bash
+cd deployment
 docker-compose up -d
 ```
 
 ### 5. Run the Application
 ```bash
-# Start FastAPI backend
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+# Option 1: Use the startup script (recommended)
+python start.py
 
-# In another terminal, start React frontend
-cd frontend
-npm install
-npm start
+# Option 2: Direct backend start
+python main.py
+
+# Option 3: Manual start
+uvicorn backend.api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ## 📊 API Endpoints

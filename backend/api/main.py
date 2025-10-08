@@ -1,5 +1,5 @@
-# Kerala AI Tutor - Simplified FastAPI Application
-# Minimal working version without heavy dependencies
+# Instant Tutor AI - FastAPI Application
+# AI-powered tutoring system for Kerala education
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,8 +8,16 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 import logging
 import os
+import sys
 from datetime import datetime
 import uvicorn
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Import our modules
+from backend.utils.jwt_utils import JWTManager, verify_access_token
+from backend.core.secure_config import SECURITY_CONFIG
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
