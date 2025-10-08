@@ -354,7 +354,7 @@
             </div>
             
             <div class="chat-input">
-                <input type="text" id="questionInput" placeholder="Ask a question about your course..." onkeypress="handleKeyPress(event)">
+                <input type="text" id="questionInput" placeholder="Ask a question about your course... (min 5 characters)" onkeypress="handleKeyPress(event)">
                 <button onclick="askQuestion()" id="askButton">Send</button>
             </div>
             
@@ -427,7 +427,10 @@
             const messages = document.getElementById('messages');
             const question = input.value.trim();
             
-            if (!question) return;
+            if (!question || question.length < 5) {
+                addMessage('ai', 'Please enter a question with at least 5 characters.');
+                return;
+            }
             
             // Add user message
             addMessage('user', question);
