@@ -64,9 +64,15 @@ class FeedbackRequest(BaseModel):
 # Authentication dependency (simplified for MVP)
 def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
     token = credentials.credentials
+    # In production, implement proper JWT token validation
     if token != "demo-token-123":
         raise HTTPException(status_code=403, detail="Invalid authentication token")
     return {"user_id": "demo_user", "permissions": ["read", "write"]}
+
+# JWT Configuration (for production use)
+JWT_SECRET_KEY = "pOEuZNr6WBoACKY8d98ddyp1Jugtpqu7Jel7O0PIP24JcB46w2Nod_zbJvlPa8aab4wicrGyRZubRPzTkoVnyg"
+JWT_ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 # Health check endpoint
 @app.get("/health")
